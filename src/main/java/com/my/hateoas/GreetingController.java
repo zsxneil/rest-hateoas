@@ -31,6 +31,7 @@ public class GreetingController {
 
     //"accept", "application/hal+json"
     //这里访问时必须设置request header 中 accept为"application/hal+json"，直接用浏览器访问会出错
+    //测试一个
     @RequestMapping(value = "/greetings",method = RequestMethod.GET)
     public Resources<Greeting> greetings(@RequestParam(value = "name",defaultValue = "world") String name){
         Greeting greeting1 = new Greeting(String.format(TEMPLATE,name + 1));
@@ -43,6 +44,7 @@ public class GreetingController {
         Resources<Greeting> resources = new Resources<>(greetingList);
         resources.add(ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(GreetingController.class).greetings(name)).withSelfRel());
         return resources;
+
     }
 
 
